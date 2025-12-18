@@ -42,7 +42,7 @@
         /* Camera Preview Vandiep */
         #camera-preview {
             position: absolute; top: 15px; right: 15px;
-            width: 120px; height: 90px;
+            width: 240px; height: 180px;
             border: 2px solid rgba(255,0,0,0.5); 
             transform: scaleX(-1); opacity: 0.6; border-radius: 8px;
         }
@@ -290,7 +290,7 @@
             ctx.font = 'bold italic 90px "Times New Roman"';
             ctx.fillStyle = '#FFD700'; ctx.textAlign = 'center';
             ctx.shadowColor = "#FF0000"; ctx.shadowBlur = 40; 
-            ctx.fillText("MERRY CHRISTMAS", 512, 130);
+            ctx.fillText("EM IU GIÁNG SINH VUI VẺ", 512, 130);
             const tex = new THREE.CanvasTexture(canvas);
             const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, blending: THREE.AdditiveBlending });
             titleMesh = new THREE.Mesh(new THREE.PlaneGeometry(60, 15), mat);
@@ -322,7 +322,7 @@
             lCtx.font = 'bold 120px "Segoe UI", sans-serif';
             lCtx.fillStyle = '#FF69B4'; lCtx.textAlign = 'center';
             lCtx.shadowColor = "#FF1493"; lCtx.shadowBlur = 40; 
-            lCtx.fillText("I LOVE YOU ❤️", 512, 130);
+            lCtx.fillText("IU HUYỀN BÉ THÌ NGON LUÔN", 512, 130);
             const loveTex = new THREE.CanvasTexture(loveCanvas);
             const loveMat = new THREE.MeshBasicMaterial({ map: loveTex, transparent: true, blending: THREE.AdditiveBlending });
             loveMesh = new THREE.Mesh(new THREE.PlaneGeometry(70, 18), loveMat);
@@ -486,7 +486,7 @@
             hands.setOptions({ maxNumHands: 2, modelComplexity: 1, minDetectionConfidence: 0.5, minTrackingConfidence: 0.5 });
 
             hands.onResults(results => {
-                ctx.clearRect(0,0,100,75); ctx.drawImage(results.image, 0, 0, 100, 75);
+                ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.drawImage(results.image, 0, 0, canvas.width, canvas.height);
 
                 // --- Hand Logic  ---
                 if (results.multiHandLandmarks.length === 2) {
@@ -519,7 +519,7 @@
             });
 
             const cameraUtils = new Camera(video, {
-                onFrame: async () => { await hands.send({image: video}); }, width: 320, height: 240
+                onFrame: async () => { await hands.send({image: video}); }, width: 640, height: 480
             });
             cameraUtils.start();
         }
